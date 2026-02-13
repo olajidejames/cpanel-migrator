@@ -1,84 +1,63 @@
-╔══════════════════════════════════════════════════════════════╗
-║                                                              ║
-║     ░█▀▀░█▀█░█▀▄░█▀▀░█░░░░░█▀▀░█▀█░█░░░█▀█░░░█▀▀░█▀█░█▀▄    ║
-║     ░█░░░█░█░█░█░█▀▀░█░░░░░█░░░█░█░█░░░█▀█░░░█░░░█░█░█░█    ║
-║     ░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀░    ║
-║                                                              ║
-║     ╔══════════════════════════════════════════════════════╗ ║
-║     ║  File Migration Tool for cPanel Servers             ║ ║
-║     ║  Transfer files between hosting accounts easily     ║ ║
-║     ╚══════════════════════════════════════════════════════╝ ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
+ 🔄 cPanel File Migrator
 
-                    ╔═══════════════════════╗
-                    ║   MIGRATION PROCESS   ║
-                    ╚═══════════════════════╝
+A simple PHP script to transfer files between cPanel servers. Perfect for migrating websites, moving backups, or transferring assets between hosting accounts.
 
-     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-     │   SOURCE    │────▶│   FETCH     │────▶│  DESTINATION│
-     │   SERVER    │     │   SCRIPT    │     │   SERVER    │
-     └─────────────┘     └─────────────┘     └─────────────┘
-            │                   │                   │
-            ▼                   ▼                   ▼
-    ┌───────────────┐   ┌───────────────┐   ┌───────────────┐
-    │ gracious-     │   │ file_get_     │   │ /home/        │
-    │ maxwell...    │   │ contents()     │   │ gltevjme/     │
-    └───────────────┘   └───────────────┘   └───────────────┘
+ 📋 Features
 
-╔═══════════════════════════════════════════════════════════════════════╗
-║                                                                       ║
-║                      ▼ COMMAND STRUCTURE ▼                            ║
-║                                                                       ║
-║    ╔══════════════════════════════════════════════════════════════╗   ║
-║    ║  $fileUrl    = 'http://source-server.com/file.zip'          ║   ║
-║    ║  $savePath   = '/home/user/public_html/destination.zip'     ║   ║
-║    ║  $fileContent = file_get_contents($fileUrl);                ║   ║
-║    ║  file_put_contents($savePath, $fileContent);                ║   ║
-║    ╚══════════════════════════════════════════════════════════════╝   ║
-║                                                                       ║
-╚═══════════════════════════════════════════════════════════════════════╝
+- ✅ Download files from any public URL
+- ✅ Save files directly to your cPanel server
+- ✅ Simple error handling
+- ✅ No database required
+- ✅ Works with large files (using cURL version)
 
-                    ╔════════════════════════════╗
-                    ║  ▼ FILES INCLUDED ▼        ║
-                    ╠════════════════════════════╣
-                    ║  📄 migrate.php            ║
-                    ║  📄 README.md               ║
-                    ║  📄 .gitignore              ║
-                    ║  📄 enhanced-migrator.php   ║
-                    ╚════════════════════════════╝
+## ⚙️ Installation
 
-╔═══════════════════════════════════════════════════════════════════════╗
-║                                                                       ║
-║                       ▼ ERROR HANDLING ▼                             ║
-║                                                                       ║
-║     ⚠️  Failed to download  ───►  ❌ Check URL & permissions         ║
-║     ⚠️  Failed to save       ───►  ❌ Check write permissions        ║
-║     ⚠️  Connection timeout   ───►  ❌ Increase timeout setting       ║
-║     ⚠️  File too large       ───►  ❌ Use cURL version               ║
-║                                                                       ║
-╚═══════════════════════════════════════════════════════════════════════╝
+1. **Upload** the PHP file to your destination cPanel server
+2. **Edit** the `$fileUrl` and `$savePath` variables
+3. **Run** the script by accessing it via browser or command line:
+   ```bash
+   php download.php
+   or
+   www.evil.com/evil.zip
+   ```
 
-                    ╔════════════════════════════╗
-                    ║   ▼ QUICK START ▼          ║
-                    ╠════════════════════════════╣
-                    ║  1. Upload migrate.php     ║
-                    ║  2. Edit URLs              ║
-                    ║  3. Run script              ║
-                    ║  4. File migrated!          ║
-                    ╚════════════════════════════╝
+## 🔧 Requirements
 
-╔═══════════════════════════════════════════════════════════════════════╗
-║                                                                       ║
-║      🚀  SUCCESSFUL MIGRATION  🚀                                     ║
-║                                                                       ║
-║      "File downloaded and saved successfully!"                        ║
-║      📊 Size: 0.2 MB | ⏱️  Time: 3.4s | 📁 Path: /home/...          ║
-║                                                                       ║
-╚═══════════════════════════════════════════════════════════════════════╝
+- PHP 5.0 or higher
+- `allow_url_fopen` enabled OR cURL installed
+- Write permissions in target directory
 
-                         ╔════════════════╗
-                         ║  ▼ CREDITS ▼   ║
-                         ║ Olajide James  ║
-                         ║  Migrator v1.0 ║
-                         ╚════════════════╝
+## ⚠️ Error Handling
+
+| Error | Possible Solution |
+|-------|------------------|
+| ❌ Failed to download | Check if source URL is accessible |
+| ❌ Failed to save | Check write permissions on destination |
+| ❌ Connection timeout | Increase timeout value in script |
+| ❌ File too large | Use enhanced cURL version |
+
+## 🔒 Security Notes
+
+> **IMPORTANT:** Remove this script after use! It has no authentication and could be abused by others.
+
+- Add IP restrictions if needed
+- Use .htaccess to protect the script
+- Delete after migration is complete
+
+## 📝 License
+
+MIT License - feel free to use, modify, and distribute
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+---
+
+```
+⭐ If this helped you migrate your files, give it a star!
+```
